@@ -1,0 +1,33 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.login-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid blue; */
+}
+
+.login-form h1 {
+  text-align: center;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.login-form input {
+  width: 250px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  outline: none;
+}
+
+.login-form button {
+  cursor: pointer;
+}
