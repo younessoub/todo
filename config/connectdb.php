@@ -1,9 +1,5 @@
 <?php
-const MYSQL_HOST = 'localhost';
-const MYSQL_PORT = 3306;
-const MYSQL_NAME = 'todoapp';
-const MYSQL_USER = 'root';
-const MYSQL_PASSWORD = '';
+require_once ('constants.php');
 try {
     $mysqlClient = new PDO(
         sprintf('mysql:host=%s;dbname=%s;port=%s;charset=utf8', MYSQL_HOST, MYSQL_NAME, MYSQL_PORT),

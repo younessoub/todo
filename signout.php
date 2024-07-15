@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-require_once(__DIR__.'/functions.php');
+require_once('functions.php');
 
 session_unset();
 session_destroy();

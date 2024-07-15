@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once(__DIR__.'/config/connectdb.php');
-require_once(__DIR__.'/functions.php');
+require_once('config/connectdb.php');
+require_once('functions.php');
 
 if(isset($_POST['email']) && isset($_POST['password'])){
   $email = $_POST['email'];

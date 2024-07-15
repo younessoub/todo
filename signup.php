@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -13,19 +12,20 @@ session_start();
 </head>
 <body>
   <main>
-    <div class="login-main">
-      <div class="login-form">
-        <h1>Login</h1>
-        <?php if(isset($_SESSION['LOGIN_ERROR_MESSAGE'])) {?>
-        <p class="error"><?php echo $_SESSION['LOGIN_ERROR_MESSAGE'];?></p>
+    <div class="signup-main">
+      <div class="signup-form">
+        <h1>Sign Up</h1>
+        <?php if(isset($_SESSION['SIGNUP_ERROR_MESSAGE'])) {?>
+        <p class="error"><?php echo $_SESSION['SIGNUP_ERROR_MESSAGE'];?></p>
         <?php } ?>
-        <form action="submit_login.php" method="POST">
+        <form action="submit_signup.php" method="POST">
+          <input type="text" name="name" required placeholder="username">
           <input type="email" name="email" placeholder="email" required>
           <input type="password" name="password" placeholder="password" required>
           <button type="submit">Submit</button>
         </form>
 
-        <p>Not Registered? <a href="signup.php">Sign Up</a></p>
+        <p>Already Registered? <a href="login.php">Login</a></p>
       </div>
     </div>
   </main>

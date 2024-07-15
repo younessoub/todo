@@ -2,29 +2,29 @@
   font-family: "Courier New", Courier, monospace;
 }
 
-.login-main {
+.login-main,.signup-main {
   display: flex;
   align-items: center;
   justify-content: center;
   /* border: 1px solid blue; */
 }
 
-.login-form h1 {
+.login-form h1 , .signup-form h1 {
   text-align: center;
 }
 
-.login-form .error {
+.login-form .error,.signup-form .error {
   color: red;
 }
 
-.login-form form {
+.login-form form , .signup-form form{
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-.login-form input {
+.login-form input, .signup-form input {
   width: 250px;
   height: 30px;
   border-radius: 5px;
@@ -32,6 +32,6 @@
   outline: none;
 }
 
-.login-form button {
+.login-form button, .signup-form button {
   cursor: pointer;
 }
