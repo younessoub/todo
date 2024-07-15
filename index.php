@@ -18,8 +18,15 @@ if(!isset($_SESSION['LOGGED_USER'])){
 </head>
 <body>
   <header>
-    hhalloo
+    <nav>
+      <h1>My To Dos</h1>
+      <ul>
+        <li><a href="signout.php">sign out</a></li>
+      </ul>
+    </nav>
   </header>
-  <main></main>
+  <main>
+    hello <?php echo $_SESSION['LOGGED_USER']['name'];?>
+  </main>
 </body>
 </html>
