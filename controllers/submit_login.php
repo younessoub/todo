@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('config/connectdb.php');
+require_once('../config/connectdb.php');
 require_once('functions.php');
 
 if(isset($_POST['email']) && isset($_POST['password'])){
@@ -14,7 +14,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
   $userInfo = $userInfo -> fetch(PDO::FETCH_ASSOC);
   if(!$userInfo or $userInfo['password']!==$password){
     $_SESSION['LOGIN_ERROR_MESSAGE'] = 'Wrong email or password';
-    redirect('login.php');
+    redirect('../pages/login.php');
   }else{
     // login successful
     $_SESSION['LOGGED_USER'] = [
@@ -23,10 +23,10 @@ if(isset($_POST['email']) && isset($_POST['password'])){
       'email' => $userInfo['email']
     ];
 
-    redirect('index.php');
+    redirect('../pages/home.php');
 
   }
   
 }else{
-  redirect('index.php');
+  redirect('../pages/login.php');
 }

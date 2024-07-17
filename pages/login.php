@@ -19,7 +19,7 @@ session_start();
         <?php if(isset($_SESSION['LOGIN_ERROR_MESSAGE'])) {?>
         <p class="error"><?php echo $_SESSION['LOGIN_ERROR_MESSAGE'];?></p>
         <?php } ?>
-        <form action="submit_login.php" method="POST">
+        <form action="../controllers/submit_login.php" method="POST">
           <input type="email" name="email" placeholder="email" required>
           <input type="password" name="password" placeholder="password" required>
           <button type="submit">Submit</button>

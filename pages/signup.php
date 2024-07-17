@@ -18,7 +18,7 @@ session_start();
         <?php if(isset($_SESSION['SIGNUP_ERROR_MESSAGE'])) {?>
         <p class="error"><?php echo $_SESSION['SIGNUP_ERROR_MESSAGE'];?></p>
         <?php } ?>
-        <form action="submit_signup.php" method="POST">
+        <form action="../controllers/submit_signup.php" method="POST">
           <input type="text" name="name" required placeholder="username">
           <input type="email" name="email" placeholder="email" required>
           <input type="password" name="password" placeholder="password" required>

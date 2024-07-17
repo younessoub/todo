@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'functions.php';
-require_once 'config/connectdb.php';
+require_once '../config/connectdb.php';
 
 if(isset($_POST['name'])&& isset($_POST['email'])&&isset($_POST['password'])){
   $name = $_POST['name'];
@@ -15,7 +15,7 @@ if(isset($_POST['name'])&& isset($_POST['email'])&&isset($_POST['password'])){
 
   if($emailExists){
     $_SESSION['SIGNUP_ERROR_MESSAGE']= 'Email is already in use';
-    redirect('signup.php');
+    redirect('../pages/signup.php');
   }else{
     $newUser = $mysqlClient ->prepare('INSERT INTO users(name, email, password) VALUES(:name, :email, :password)');
     $newUser-> execute([
@@ -25,8 +25,8 @@ if(isset($_POST['name'])&& isset($_POST['email'])&&isset($_POST['password'])){
     ]);
 
 
-    redirect('login.php');
+    redirect('../pages/login.php');
   }
 }else{
-  redirect('login.php');
+  redirect('../pages/signup.php');
 }

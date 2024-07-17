@@ -6,6 +6,6 @@ require_once('functions.php');
 session_unset();
 session_destroy();
 
-redirect('login.php');
+redirect('../pages/login.php');
 
 
