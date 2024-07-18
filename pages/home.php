@@ -9,7 +9,7 @@ if (!isset($_SESSION['LOGGED_USER'])) {
 
 require_once ('../config/connectdb.php');
 
-$query = $mysqlClient->prepare('SELECT * FROM todos WHERE user_id = :user_id;');
+$query = $mysqlClient->prepare('SELECT * FROM todos WHERE user_id = :user_id ORDER BY id DESC;');
 $query->execute([
   'user_id' => $_SESSION['LOGGED_USER']['user_id']
 ]);
@@ -92,9 +92,9 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
                   <thead>
                     <tr>
 
-                      <th scope="col">Todo item</th>
+                      <th scope="col" style="width:60%">Todo item</th>
 
-                      <th scope="col">Actions</th>
+                      <th scope="col" style="width:40%">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -104,15 +104,20 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
                       foreach ($results as $item) { ?>
                         <tr>
 
-                          <td>
+                          <td <?php if ($item['finished'] === 1) {
+                            echo 'class="text-decoration-line-through"';
+                          } ?>>
                             <?php echo $item['content']; ?>
                           </td>
 
                           <td>
-                            <div class="d-flex flex-column flex-sm-row align-items-stretch">
-                              <button type="submit" class="btn btn-danger mb-2 mb-sm-0">Delete</button>
-                              <button type="submit" class="btn btn-success ms-sm-2">Finished</button>
-                            </div>
+                            <form action="../controllers/task_action.php" method="POST">
+                              <input type="number" class="visually-hidden" name="id" value="<?php echo $item['id']; ?>">
+                              <div class="d-flex flex-column flex-sm-row align-items-stretch">
+                                <button type="submit" name="delete" class="btn btn-danger mb-2 mb-sm-0">Delete</button>
+                                <button type="submit" name="finish" class="btn btn-success ms-sm-2">Finished</button>
+                              </div>
+                            </form>
                           </td>
                         </tr>
                         <?php
