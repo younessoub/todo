@@ -9,7 +9,12 @@ if (!isset($_SESSION['LOGGED_USER'])) {
 
 require_once ('../config/connectdb.php');
 
+$query = $mysqlClient->prepare('SELECT * FROM todos WHERE user_id = :user_id;');
+$query->execute([
+  'user_id' => $_SESSION['LOGGED_USER']['user_id']
+]);
 
+$results = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -48,7 +53,6 @@ require_once ('../config/connectdb.php');
         </ul>
 
         <div class="col-md-3 text-end">
-
           <a href="../controllers/signout.php" type="button" class="btn btn-primary">Sign-Out</a>
         </div>
       </div>
@@ -94,44 +98,26 @@ require_once ('../config/connectdb.php');
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <?php if (empty($results)) { ?>
+                      <p class="text-center">No Tasks Yet</p>
+                    <?php } else {
+                      foreach ($results as $item) { ?>
+                        <tr>
 
-                      <td>
-                        Buy groceries for next week
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam, cumque voluptates! Magni
-                        perferendis soluta, rerum voluptate aut maxime ea eveniet provident cum. Impedit facere
-                        doloribus ipsam, aut esse cum modi.
-                      </td>
+                          <td>
+                            <?php echo $item['content']; ?>
+                          </td>
 
-                      <td>
-                        <div class="d-flex flex-column flex-sm-row align-items-stretch">
-                          <button type="submit" class="btn btn-danger mb-2 mb-sm-0">Delete</button>
-                          <button type="submit" class="btn btn-success ms-sm-2">Finished</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-
-                      <td>Renew car insurance</td>
-
-                      <td>
-                        <div class="d-flex flex-column flex-sm-row align-items-stretch">
-                          <button type="submit" class="btn btn-danger mb-2 mb-sm-0">Delete</button>
-                          <button type="submit" class="btn btn-success ms-sm-2">Finished</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-
-                      <td>Sign up for online course</td>
-
-                      <td>
-                        <div class="d-flex flex-column flex-sm-row align-items-stretch">
-                          <button type="submit" class="btn btn-danger mb-2 mb-sm-0">Delete</button>
-                          <button type="submit" class="btn btn-success ms-sm-2">Finished</button>
-                        </div>
-                      </td>
-                    </tr>
+                          <td>
+                            <div class="d-flex flex-column flex-sm-row align-items-stretch">
+                              <button type="submit" class="btn btn-danger mb-2 mb-sm-0">Delete</button>
+                              <button type="submit" class="btn btn-success ms-sm-2">Finished</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <?php
+                      }
+                    } ?>
                   </tbody>
                 </table>
 
