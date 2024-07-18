@@ -61,7 +61,7 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
   <main>
     <h1 class="ms-5">Hello <?php echo $_SESSION['LOGGED_USER']['name'] ?></h1>
 
-    <section class="vh-100">
+    <section>
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-lg-9 col-xl-7">

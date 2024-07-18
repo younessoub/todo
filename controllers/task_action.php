@@ -11,8 +11,20 @@ if (isset($_POST['id'])) {
       'id' => $_POST['id']
     ]);
   } elseif (isset($_POST['finish'])) {
-    $query = $mysqlClient->prepare('UPDATE todos SET finished = 1 WHERE id = :id;');
+    $query = $mysqlClient->prepare('SELECT finished FROM todos WHERE id = :id;');
     $query->execute([
+      'id' => $_POST['id']
+    ]);
+    $todo = $query->fetch(PDO::FETCH_ASSOC);
+    if ($todo['finished'] === 1) {
+      $finished = 0;
+    } else {
+      $finished = 1;
+    }
+
+    $query = $mysqlClient->prepare('UPDATE todos SET finished = :num WHERE id = :id;');
+    $query->execute([
+      'num' => $finished,
       'id' => $_POST['id']
     ]);
   }
